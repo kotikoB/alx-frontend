@@ -1,11 +1,24 @@
 import React from 'react';
+import Navigation from './components/Navigation/Navigation';
+import ProtectedRoute from './components/Auth/ProtectedRoute';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-function App() {
+// components
+import Dashboard from './components/Dashboard/Dashboard';
+import Login from './components/Auth/Login';
+import Signup from './components/Auth/Signup';
+
+const App = () => {
     return (
-        <div className='App'>
-            <h1>Index page</h1>
-        </div>
+        <Router>
+            <div className='App'>
+                <Navigation />
+            </div>
+            <Route exact path='/' component={ProtectedRoute(Dashboard)} />
+            <Route exact path='/login' component={Login} />
+            <Route exact path='/signup' component={Signup} />
+        </Router>
     );
-}
+};
 
 export default App;
