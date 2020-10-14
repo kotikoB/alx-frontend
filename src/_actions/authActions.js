@@ -1,24 +1,17 @@
-import { LOGIN, LOGOUT } from './types';
+import { IS_AUTHENTICATING, SET_AUTHENTICATED, AUTHENTICATION_FAILED } from './types';
+import axios from '../helpers/axiosConfig';
 
-localStorage.setItem(
-    'isAuthenticated',
-    JSON.stringify({
-        isAuthenticated: true
-    })
-);
+export const authenticate = ({ email, password }) => (dispatch) => {
+    dispatch({ IS_AUTHENTICATING });
 
-const isAuthenticated = JSON.parse(localStorage.getItem('isAuthenticated'));
-
-export const login = () => (dispatch) => {
-    dispatch({
-        type: LOGIN,
-        payload: isAuthenticated
-    });
-};
-
-export const logout = () => (dispatch) => {
-    dispatch({
-        type: LOGOUT,
-        payload: !isAuthenticated
-    });
+    const body = JSON.stringify({ email, password });
+    axios
+        .post('/api', body)
+        .then((res) =>
+            dispatch({
+                type: SET_AUTHENTICATED,
+                payload: res.data
+            })
+        )
+        .catch(dispatch({ AUTHENTICATION_FAILED }));
 };

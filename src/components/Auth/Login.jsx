@@ -10,26 +10,13 @@ import { Container, Row, Col, Button, Form, FormGroup, Label, Input, Card, CardB
 // helpers
 import { validateForm } from '../../helpers/validations';
 import { validateInputData } from '../../helpers/validations';
+import {authErrors} from '../../helpers/formErrors'
 
 class Login extends Component {
     state = {
         email: '',
         password: '',
-        errors: {
-            email: {
-                message: '',
-                valid: null,
-                invalid: null
-            },
-            password: {
-                message: '',
-                valid: null,
-                invalid: null
-            },
-            formError: {
-                message: ''
-            }
-        }
+        errors: authErrors
     };
 
     onChangeHandler = (e) => {
