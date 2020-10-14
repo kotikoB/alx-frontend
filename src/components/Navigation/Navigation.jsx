@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { logout } from '../../_actions/authActions';
+import { authenticate } from '../../_actions/authActions';
 import { Redirect } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 import avatar from '../../assets/img/male.png';
@@ -56,7 +56,7 @@ const Navigation = (props) => {
                                 <DropdownMenu>
                                     <DropdownItem>Profile</DropdownItem>
                                     <DropdownItem>
-                                        <NavLink to='/login' onClick={() => dispatch(logout())}>
+                                        <NavLink to='/login' onClick={() => console.log('logout!')}>
                                             Logout
                                         </NavLink>
                                     </DropdownItem>

@@ -3,14 +3,14 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import ErrorSpan from '../Errors/FormErrors';
-import { authenticate } from '../../store/actions'
+import { authenticate } from '../../_actions/authActions'
 
 import { Container, Row, Col, Button, Form, FormGroup, Label, Input, Card, CardBody } from 'reactstrap';
 
 // helpers
 import { validateForm } from '../../helpers/validations';
 import { validateInputData } from '../../helpers/validations';
-import {authErrors} from '../../helpers/formErrors'
+import { authErrors } from '../../helpers/formErrors'
 
 class Login extends Component {
     state = {
