@@ -3,14 +3,14 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import ErrorSpan from '../Errors/FormErrors';
-import { authenticate } from '../../store/actions'
+import { register } from '../../_actions/authActions'
 
 import { Container, Row, Col, Button, Form, FormGroup, Label, Input, Card, CardBody } from 'reactstrap';
 
 // helpers
-import { authErrors } from '../../helpers/formErrors'
 import { validateForm } from '../../helpers/validations';
 import { validateInputData } from '../../helpers/validations';
+import { authErrors } from './errors'
 
 class Signup extends Component {
     state = {
@@ -31,8 +31,10 @@ class Signup extends Component {
 
     onSubmitHandler = (e) => {
         e.preventDefault();
+        const body = { email: this.state.email, password: this.state.password }
+        console.log('Signup body->', body);
         if (validateForm(this.state.errors)) {
-            this.props.authenticate({ email: this.state.email, password: this.state.password });
+            this.props.register(body);
         } else {
             console.error('Invalid Form');
         }
@@ -49,13 +51,13 @@ class Signup extends Component {
 
         return (
             <Container>
-                {this.props.isAuthenticated && <Redirect to='/lawyers' />}
+                {this.props.authenticated && <Redirect to='/lawyers' />}
                 <Row className='justify-content-center'>
                     <Col xs='12' sm='12' md='6'>
                         <Card className='mt-3'>
                             <CardBody>
                                 <Form onSubmit={this.onSubmitHandler}>
-                                    <h4 className='text-center'>Admin Signup</h4>
+                                    <h4 className='text-center'>Signup</h4>
                                     <FormGroup>
                                         <Label for='email'>Email</Label>
                                         <Input
@@ -107,19 +109,12 @@ class Signup extends Component {
 }
 
 Signup.propTypes = {
-    isAuthenticated: PropTypes.bool.isRequired,
-    Signup: PropTypes.func.isRequired
+    register: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
-    isAuthenticated: state.isAuthenticated,
-    isAuthenticating: state.isAuthenticating
+    // user: state.new,
+    registering: state.registering
 });
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    authenticate: (user) => dispatch(authenticate(user))
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Signup);
+export default connect(mapStateToProps, { register })(Signup);

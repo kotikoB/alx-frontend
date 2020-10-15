@@ -3,7 +3,7 @@ const validEmailRegex = new RegExp(
     /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
 );
 
-const validPasswordRegex = new RegExp(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/);
+const validPasswordRegex = new RegExp(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,}$/);
 
 const validateForm = (errors) => {
     let valid = true;
@@ -34,7 +34,7 @@ const validateInputData = (errors, name, value) => {
                 password.valid = true, 
                 password.invalid = false
             } else {
-                password.message = 'Password should contain at least 1 lowercase letter, one upper case letter, one number and one special character',
+                password.message = 'Password should contain at least one number, one special character, and at least 6 characters long.',
                 password.valid = false,
                 password.invalid = true
             }

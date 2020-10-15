@@ -10,7 +10,7 @@ import { Container, Row, Col, Button, Form, FormGroup, Label, Input, Card, CardB
 // helpers
 import { validateForm } from '../../helpers/validations';
 import { validateInputData } from '../../helpers/validations';
-import { authErrors } from '../../helpers/formErrors'
+import { authErrors } from './errors'
 
 class Login extends Component {
     state = {
@@ -31,8 +31,10 @@ class Login extends Component {
 
     onSubmitHandler = (e) => {
         e.preventDefault();
+        const body = { email: this.state.email, password: this.state.password }
+        console.log('bosdy->', body);
         if (validateForm(this.state.errors)) {
-            this.props.authenticate({ email: this.state.email, password: this.state.password });
+            this.props.authenticate(body);
         } else {
             console.error('Invalid Form');
         }
@@ -55,7 +57,7 @@ class Login extends Component {
                         <Card className='mt-3'>
                             <CardBody>
                                 <Form onSubmit={this.onSubmitHandler}>
-                                    <h4 className='text-center'>Admin Login</h4>
+                                    <h4 className='text-center'>Login</h4>
                                     <FormGroup>
                                         <Label for='email'>Email</Label>
                                         <Input
@@ -107,13 +109,13 @@ class Login extends Component {
 }
 
 Login.propTypes = {
-    isAuthenticated: PropTypes.bool.isRequired,
-    login: PropTypes.func.isRequired
+    authenticated: PropTypes.bool.isRequired,
+    authenticate: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
-    isAuthenticated: state.isAuthenticated,
-    isAuthenticating: state.isAuthenticating
+    authenticated: state.authenticated,
+    authenticating: state.authenticating
 });
 
 const mapDispatchToProps = (dispatch) => {

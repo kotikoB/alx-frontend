@@ -24,9 +24,9 @@ const Navigation = (props) => {
 
     const toggle = () => setIsOpen(!isOpen);
 
-    let authenticated = useSelector((state) => state.isAuthenticated);
+    let authenticated = useSelector((state) => state.authenticated);
 
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
 
     return (
         <Container fluid>
