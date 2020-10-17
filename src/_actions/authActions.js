@@ -14,12 +14,16 @@ export const authenticate = ({ email, password }) => (dispatch) => {
     axios
         .post('/user/login', { email, password })
         .then((res) => {
+            console.log('login res', res);
             dispatch({
                 type: AUTHENTICATED,
                 payload: res.data
             });
         })
-        .catch((err) => dispatch({ type: AUTHENTICATION_FAILED, payload: err }));
+        .catch((err) => {
+            console.log('login err', err);
+            dispatch({ type: AUTHENTICATION_FAILED, payload: err });
+        });
 };
 
 export const register = ({ email, password }) => (dispatch) => {
@@ -35,7 +39,7 @@ export const register = ({ email, password }) => (dispatch) => {
             });
         })
         .catch((err) => {
-            console.log('register error -> ', err);
+            console.log('register error -> ', err.data);
             dispatch({ type: REGISTRATION_FAILED, payload: err });
         });
 };
