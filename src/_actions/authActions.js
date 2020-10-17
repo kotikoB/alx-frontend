@@ -21,8 +21,8 @@ export const authenticate = ({ email, password }) => (dispatch) => {
             });
         })
         .catch((err) => {
-            console.log('login err', err);
-            dispatch({ type: AUTHENTICATION_FAILED, payload: err });
+            console.error('login err', err.response);
+            dispatch({ type: AUTHENTICATION_FAILED, payload: err.response.data });
         });
 };
 
@@ -39,8 +39,8 @@ export const register = ({ email, password }) => (dispatch) => {
             });
         })
         .catch((err) => {
-            console.log('register error -> ', err.data);
-            dispatch({ type: REGISTRATION_FAILED, payload: err });
+            console.error('register error -> ', err.response.data);
+            dispatch({ type: REGISTRATION_FAILED, payload: err.response.data });
         });
 };
 
