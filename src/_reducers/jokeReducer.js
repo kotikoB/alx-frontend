@@ -15,6 +15,7 @@ export function jokeReducer(state = initialState, action) {
         case GET_JOKES:
             return {
                 ...state,
+                loadingData: false,
                 jokes: [...action.payload]
             };
         default:

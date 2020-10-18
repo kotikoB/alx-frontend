@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getAnime } from '../../_actions/animeActions';
 import CustomCard from './Anime';
+import Spinner from '../../components/Spinner/Spinner';
 import { Container, Row, Col } from 'reactstrap';
 
 class Cards extends Component {
@@ -16,24 +17,29 @@ class Cards extends Component {
         return (
             <Container className='mt-2'>
                 <h4>Anime</h4>
-                <Row>
-                    {anime.map((an) => (
-                        <Col sm='3' key={an.id}>
-                            <CustomCard
-                                title={an.type}
-                                textBody={an.attributes.synopsis.slice(0, 100) + ' ...'}
-                                imgSrc={an.attributes.posterImage.medium}
-                            />
-                        </Col>
-                    ))}
-                </Row>
+                {this.props.loading ? (
+                    <Spinner text='Loading Anime...' />
+                ) : (
+                    <Row>
+                        {anime.map((an) => (
+                            <Col sm='3' key={an.id}>
+                                <CustomCard
+                                    title={an.type}
+                                    textBody={an.attributes.synopsis.slice(0, 100) + ' ...'}
+                                    imgSrc={an.attributes.posterImage.medium}
+                                />
+                            </Col>
+                        ))}
+                    </Row>
+                )}
             </Container>
         );
     }
 }
 
 const mapStateToProps = (state) => ({
-    anime: state.anime.anime
+    anime: state.anime.anime,
+    loading: state.anime.loadingData
 });
 
 export default connect(mapStateToProps, { getAnime })(Cards);
