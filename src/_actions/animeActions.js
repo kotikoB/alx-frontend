@@ -3,8 +3,8 @@ import axios from '../helpers/axiosConfig';
 
 export const getAnime = () => (dispatch) => {
     dispatch({ type: LOADING_DATA });
-    axios.get('').then((res) => {
-        console.log('anime', res.data);
+    axios.get('/random').then((res) => {
+        console.log('anime actions', res.data);
         dispatch({ type: GET_ANIME, payload: res.data });
     });
 };

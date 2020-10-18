@@ -33,37 +33,37 @@ const Navigation = (props) => {
             {authenticated && <Redirect to='login' />}
             <Navbar color='light' light expand='md'>
                 {/* {authenticated && ( */}
-                    <>
-                        <NavbarBrand>
-                            <NavLink to='/'>
-                                <h4>ALX</h4>
-                            </NavLink>
-                        </NavbarBrand>
-                        <NavbarToggler onClick={toggle} />
-                        <Collapse isOpen={isOpen} navbar>
-                            <Nav className='mr-auto' navbar>
-                                <NavItem className='mr-2'>
-                                    <NavLink to='/'>Jokes</NavLink>
-                                </NavItem>
-                                <NavItem>
-                                    <NavLink to='/random'>Anime</NavLink>
-                                </NavItem>
-                            </Nav>
-                            <UncontrolledDropdown>
-                                <DropdownToggle nav>
-                                    <img src={avatar} alt='avatar' className='pb-1' /> Kotiko
-                                </DropdownToggle>
-                                <DropdownMenu>
-                                    <DropdownItem>Profile</DropdownItem>
-                                    <DropdownItem>
-                                        <NavLink to='/login' onClick={() => console.log('logout!')}>
-                                            Logout
-                                        </NavLink>
-                                    </DropdownItem>
-                                </DropdownMenu>
-                            </UncontrolledDropdown>
-                        </Collapse>
-                    </>
+                <>
+                    <NavbarBrand>
+                        <NavLink to='/'>
+                            <h4>ALX</h4>
+                        </NavLink>
+                    </NavbarBrand>
+                    <NavbarToggler onClick={toggle} />
+                    <Collapse isOpen={isOpen} navbar>
+                        <Nav className='mr-auto' navbar>
+                            <NavItem className='mr-2'>
+                                <NavLink to='/'>Jokes</NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink to='/anime'>Anime</NavLink>
+                            </NavItem>
+                        </Nav>
+                        <UncontrolledDropdown>
+                            <DropdownToggle nav>
+                                <img src={avatar} alt='avatar' className='pb-1' /> Kotiko
+                            </DropdownToggle>
+                            <DropdownMenu>
+                                <DropdownItem>Profile</DropdownItem>
+                                <DropdownItem>
+                                    <NavLink to='/login' onClick={() => console.log('logout!')}>
+                                        Logout
+                                    </NavLink>
+                                </DropdownItem>
+                            </DropdownMenu>
+                        </UncontrolledDropdown>
+                    </Collapse>
+                </>
                 {/* )} */}
             </Navbar>
         </Container>

@@ -5,7 +5,7 @@ const initialState = {
     jokes: []
 };
 
-export const jokeReducer = (state = initialState, action) => {
+export function jokeReducer(state = initialState, action) {
     switch (action.type) {
         case LOADING_DATA:
             return {
@@ -20,4 +20,4 @@ export const jokeReducer = (state = initialState, action) => {
         default:
             return { ...state };
     }
-};
+}
