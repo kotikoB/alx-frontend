@@ -32,21 +32,21 @@ const Navigation = (props) => {
         <Container fluid>
             {authenticated && <Redirect to='login' />}
             <Navbar color='light' light expand='md'>
-                {authenticated && (
+                {/* {authenticated && ( */}
                     <>
                         <NavbarBrand>
                             <NavLink to='/'>
-                                <h4>Case Tracker</h4>
+                                <h4>ALX</h4>
                             </NavLink>
                         </NavbarBrand>
                         <NavbarToggler onClick={toggle} />
                         <Collapse isOpen={isOpen} navbar>
                             <Nav className='mr-auto' navbar>
                                 <NavItem className='mr-2'>
-                                    <NavLink to='/lawyers'>Lawyers</NavLink>
+                                    <NavLink to='/'>Jokes</NavLink>
                                 </NavItem>
                                 <NavItem>
-                                    <NavLink to='/institutions'>Institutions</NavLink>
+                                    <NavLink to='/random'>Anime</NavLink>
                                 </NavItem>
                             </Nav>
                             <UncontrolledDropdown>
@@ -64,7 +64,7 @@ const Navigation = (props) => {
                             </UncontrolledDropdown>
                         </Collapse>
                     </>
-                )}
+                {/* )} */}
             </Navbar>
         </Container>
     );

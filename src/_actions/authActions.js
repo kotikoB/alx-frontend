@@ -1,6 +1,6 @@
 import {
-    REGISTER,
     REGISTERING,
+    REGISTER_SUCCESS,
     REGISTRATION_FAILED,
     AUTHENTICATING,
     AUTHENTICATED,
@@ -34,7 +34,7 @@ export const register = ({ email, password }) => (dispatch) => {
         .then((res) => {
             console.log('signup response', res);
             dispatch({
-                type: REGISTER,
+                type: REGISTER_SUCCESS,
                 payload: res.data
             });
         })

@@ -1,10 +1,11 @@
 import {
-    REGISTER,
+    REGISTER_SUCCESS,
     REGISTERING,
     REGISTRATION_FAILED,
     AUTHENTICATING,
     AUTHENTICATED,
-    AUTHENTICATION_FAILED
+    AUTHENTICATION_FAILED,
+    LOAD_USER
 } from '../_actions/types';
 
 const initialState = {
@@ -22,13 +23,18 @@ export const authReducer = (state = initialState, action) => {
                 ...state,
                 authenticating: true
             };
+        
+
         case AUTHENTICATED:
-            return {
+            case REGISTER_SUCCESS:
+                localStorage.setItem('token', action.payload.token);
+                return {
                 ...state,
+                ...action.payload,
                 authenticated: true,
-                authToken: action.payload,
                 authenticating: false
-            };
+                };
+
         case AUTHENTICATION_FAILED:
             return {
                 ...state,
@@ -40,7 +46,7 @@ export const authReducer = (state = initialState, action) => {
                 ...state,
                 registering: true
             };
-        case REGISTER:
+        case REGISTER_SUCCESS:
             return {
                 ...state,
                 newUser: action.payload
