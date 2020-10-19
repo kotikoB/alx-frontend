@@ -16,9 +16,8 @@ const App = () => {
             <div className='App'>
                 <Navigation />
             </div>
-            <Route exact path='/' component={Jokes} />
-            <Route exact path='/anime' component={Anime} />
-            {/* <Route exact path='/' component={ProtectedRoute(Dashboard)} /> */}
+            <Route exact path='/' component={ProtectedRoute(Jokes)} />
+            <Route exact path='/anime' component={ProtectedRoute(Anime)} />
             <Route exact path='/login' component={Login} />
             <Route exact path='/signup' component={Signup} />
         </Router>

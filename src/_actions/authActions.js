@@ -14,10 +14,10 @@ export const authenticate = ({ email, password }) => (dispatch) => {
     axios
         .post('/user/login', { email, password })
         .then((res) => {
-            console.log('login res', res);
+            axios.defaults.headers.common['Authorization'] = res.data;
             dispatch({
                 type: AUTHENTICATED,
-                payload: res.data
+                payload: { token: res.data }
             });
         })
         .catch((err) => {
@@ -32,7 +32,7 @@ export const register = ({ email, password }) => (dispatch) => {
     axios
         .post('/user/register', { email, password })
         .then((res) => {
-            console.log('signup response', res);
+            console.log('signup response', res.data);
             dispatch({
                 type: REGISTER_SUCCESS,
                 payload: res.data

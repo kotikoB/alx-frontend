@@ -23,17 +23,14 @@ export const authReducer = (state = initialState, action) => {
                 ...state,
                 authenticating: true
             };
-        
 
         case AUTHENTICATED:
-            case REGISTER_SUCCESS:
-                localStorage.setItem('token', action.payload.token);
-                return {
+            localStorage.setItem('token', action.payload);
+            return {
                 ...state,
-                ...action.payload,
                 authenticated: true,
                 authenticating: false
-                };
+            };
 
         case AUTHENTICATION_FAILED:
             return {
@@ -46,11 +43,7 @@ export const authReducer = (state = initialState, action) => {
                 ...state,
                 registering: true
             };
-        case REGISTER_SUCCESS:
-            return {
-                ...state,
-                newUser: action.payload
-            };
+
         case REGISTRATION_FAILED:
             return {
                 registering: false
