@@ -9,6 +9,6 @@ password: p@ssw0rd
 
 NB: You can also create a new user and use that user to login
 
-## Design patter
+## Design pattern
 
 flux
