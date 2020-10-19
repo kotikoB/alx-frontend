@@ -27,7 +27,7 @@ export const authReducer = (state = initialState, action) => {
             };
 
         case AUTHENTICATED:
-            localStorage.setItem('token', action.payload);
+            localStorage.setItem('token', action.payload.token);
             return {
                 ...state,
                 authenticated: true,

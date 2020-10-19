@@ -3,14 +3,25 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import ErrorSpan from '../Errors/FormErrors';
-import { register } from '../../_actions/authActions'
+import { register } from '../../_actions/authActions';
 
-import { Container, Row, Col, Button, Form, FormGroup, Label, Input, Card, CardBody } from 'reactstrap';
+import {
+    Container,
+    Row,
+    Col,
+    Button,
+    Form,
+    FormGroup,
+    Label,
+    Input,
+    Card,
+    CardBody
+} from 'reactstrap';
 
 // helpers
 import { validateForm } from '../../helpers/validations';
 import { validateInputData } from '../../helpers/validations';
-import { authErrors } from './errors'
+import { authErrors } from './errors';
 
 class Signup extends Component {
     state = {
@@ -31,7 +42,7 @@ class Signup extends Component {
 
     onSubmitHandler = (e) => {
         e.preventDefault();
-        const body = { email: this.state.email, password: this.state.password }
+        const body = { email: this.state.email, password: this.state.password };
         console.log('Signup body->', body);
         if (validateForm(this.state.errors)) {
             this.props.register(body);
@@ -113,7 +124,6 @@ Signup.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-    // user: state.new,
     registering: state.registering
 });
 

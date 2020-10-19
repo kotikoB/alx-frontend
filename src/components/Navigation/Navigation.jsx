@@ -5,6 +5,7 @@ import { logout } from '../../_actions/authActions';
 import { Redirect } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 import avatar from '../../assets/img/male.png';
+import jwt_decode from 'jwt-decode';
 
 import {
     Collapse,
@@ -19,6 +20,11 @@ import {
     DropdownItem,
     DropdownMenu
 } from 'reactstrap';
+
+const token = localStorage.getItem('token');
+const decoded = jwt_decode(token);
+
+console.log('decoded token', decoded);
 
 const Navigation = (props) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -54,7 +60,8 @@ const Navigation = (props) => {
                             </Nav>
                             <UncontrolledDropdown>
                                 <DropdownToggle nav>
-                                    <img src={avatar} alt='avatar' className='pb-1' /> Kotiko
+                                    <img src={avatar} alt='avatar' className='pb-1' />{' '}
+                                    {decoded.email}
                                 </DropdownToggle>
                                 <DropdownMenu>
                                     <DropdownItem>Profile</DropdownItem>
