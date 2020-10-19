@@ -4,7 +4,8 @@ import {
     REGISTRATION_FAILED,
     AUTHENTICATING,
     AUTHENTICATED,
-    AUTHENTICATION_FAILED
+    AUTHENTICATION_FAILED,
+    LOGOUT
 } from './types';
 import axios from '../helpers/axiosConfig';
 
@@ -21,7 +22,7 @@ export const authenticate = ({ email, password }) => (dispatch) => {
             });
         })
         .catch((err) => {
-            console.error('login err', err.response);
+            console.error('login err', err.response.data);
             dispatch({ type: AUTHENTICATION_FAILED, payload: err.response.data });
         });
 };
@@ -44,4 +45,7 @@ export const register = ({ email, password }) => (dispatch) => {
         });
 };
 
-export const logout = () => 'LOGOUT';
+export const logout = () => (dispatch) => {
+    delete axios.defaults.headers.common['Authorization'];
+    dispatch({ type: LOGOUT });
+};

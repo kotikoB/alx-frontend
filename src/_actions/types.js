@@ -5,6 +5,7 @@ export const LOAD_USER = 'LOAD_USER';
 export const AUTHENTICATING = 'AUTHENTICATING';
 export const AUTHENTICATION_FAILED = 'AUTHENTICATION_FAILED';
 export const AUTHENTICATED = 'AUTHENTICATED';
+export const LOGOUT = 'LOGOUT';
 
 export const LOADING_DATA = 'LOADING_DATA';
 export const GET_JOKES = 'GET_JOKES';

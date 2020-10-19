@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { connect } from 'react-redux';
-// import { authenticate } from '../../_actions/authActions';
+import { logout } from '../../_actions/authActions';
 import { Redirect } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 import avatar from '../../assets/img/male.png';
@@ -25,17 +25,15 @@ const Navigation = (props) => {
 
     const toggle = () => setIsOpen(!isOpen);
 
-    const { authenticated } = props;
+    const { authenticated, logout } = props;
 
     console.log('authenticated', props);
-
-    // let authenticated = useSelector((state) => state.authenticated);
 
     // const dispatch = useDispatch();
 
     return (
         <Container fluid>
-            {authenticated && <Redirect to='login' />}
+            {authenticated && <Redirect to='/' />}
             <Navbar color='light' light expand='md'>
                 {authenticated && (
                     <>
@@ -61,7 +59,7 @@ const Navigation = (props) => {
                                 <DropdownMenu>
                                     <DropdownItem>Profile</DropdownItem>
                                     <DropdownItem>
-                                        <NavLink to='/login' onClick={() => console.log('logout!')}>
+                                        <NavLink to='/login' onClick={() => logout()}>
                                             Logout
                                         </NavLink>
                                     </DropdownItem>
@@ -79,4 +77,4 @@ const mapStateToProps = (state) => ({
     authenticated: state.auth.authenticated
 });
 
-export default connect(mapStateToProps, null)(Navigation);
+export default connect(mapStateToProps, { logout })(Navigation);

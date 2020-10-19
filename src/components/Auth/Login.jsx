@@ -3,14 +3,25 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import ErrorSpan from '../Errors/FormErrors';
-import { authenticate } from '../../_actions/authActions'
+import { authenticate } from '../../_actions/authActions';
 
-import { Container, Row, Col, Button, Form, FormGroup, Label, Input, Card, CardBody } from 'reactstrap';
+import {
+    Container,
+    Row,
+    Col,
+    Button,
+    Form,
+    FormGroup,
+    Label,
+    Input,
+    Card,
+    CardBody
+} from 'reactstrap';
 
 // helpers
 import { validateForm } from '../../helpers/validations';
 import { validateInputData } from '../../helpers/validations';
-import { authErrors } from './errors'
+import { authErrors } from './errors';
 
 class Login extends Component {
     state = {
@@ -31,7 +42,7 @@ class Login extends Component {
 
     onSubmitHandler = (e) => {
         e.preventDefault();
-        const body = { email: this.state.email, password: this.state.password }
+        const body = { email: this.state.email, password: this.state.password };
         console.log('bosdy->', body);
         if (validateForm(this.state.errors)) {
             this.props.authenticate(body);
@@ -98,6 +109,11 @@ class Login extends Component {
                                     <Row className='justify-content-center'>
                                         <ErrorSpan errorMessage={errors.formError.message} />
                                     </Row>
+                                    <Row className='justify-content-center'>
+                                        <ErrorSpan
+                                            errorMessage={this.props.authenticationErrorMessage}
+                                        />
+                                    </Row>
                                 </Form>
                             </CardBody>
                         </Card>
@@ -109,19 +125,11 @@ class Login extends Component {
 }
 
 Login.propTypes = {
-    authenticated: PropTypes.bool.isRequired,
-    authenticate: PropTypes.func.isRequired
+    authenticated: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = (state) => ({
-    authenticated: state.authenticated,
-    authenticating: state.authenticating
+    authenticationErrorMessage: state.auth.errorMessage
 });
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    authenticate: (user) => dispatch(authenticate(user))
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, { authenticate })(Login);

@@ -5,7 +5,8 @@ import {
     AUTHENTICATING,
     AUTHENTICATED,
     AUTHENTICATION_FAILED,
-    LOAD_USER
+    LOAD_USER,
+    LOGOUT
 } from '../_actions/types';
 
 const initialState = {
@@ -13,6 +14,7 @@ const initialState = {
     authenticating: false,
     registering: false,
     authToken: null,
+    errorMessage: '',
     newUser: {}
 };
 
@@ -36,7 +38,14 @@ export const authReducer = (state = initialState, action) => {
             return {
                 ...state,
                 authenticated: false,
-                authenticating: false
+                authenticating: false,
+                errorMessage: action.payload
+            };
+
+        case LOGOUT:
+            return {
+                ...state,
+                authenticated: false
             };
         case REGISTERING:
             return {
