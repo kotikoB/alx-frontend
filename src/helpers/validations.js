@@ -34,7 +34,7 @@ const validateInputData = (errors, name, value) => {
                 password.valid = true, 
                 password.invalid = false
             } else {
-                password.message = 'Password should contain at least one number, one special character, and at least 6 characters long.',
+                password.message = 'Password should contain at least one number, one special character, and be at least 6 characters long.',
                 password.valid = false,
                 password.invalid = true
             }
