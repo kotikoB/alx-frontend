@@ -15,6 +15,7 @@ const initialState = {
     registering: false,
     authToken: null,
     errorMessage: '',
+    successMessage: '',
     newUser: {}
 };
 
@@ -39,7 +40,7 @@ export const authReducer = (state = initialState, action) => {
                 ...state,
                 authenticated: false,
                 authenticating: false,
-                errorMessage: action.payload
+                message: action.payload
             };
 
         case LOGOUT:
@@ -47,16 +48,26 @@ export const authReducer = (state = initialState, action) => {
                 ...state,
                 authenticated: false
             };
+
         case REGISTERING:
             return {
                 ...state,
                 registering: true
             };
 
+        case REGISTER_SUCCESS:
+            return {
+                ...state,
+                successMessage: action.payload.message,
+                newUser: { ...action.payload.user }
+            };
+
         case REGISTRATION_FAILED:
             return {
-                registering: false
+                registering: false,
+                errorMessage: action.payload
             };
+
         default:
             return state;
     }

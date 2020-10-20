@@ -13,4 +13,20 @@ const ErrorSpan = ({ errorMessage }) => {
     );
 };
 
+export const SuccessSpan = ({ successMessage, children }) => {
+    return (
+        <>
+            <span
+                style={{
+                    color: 'green',
+                    fontSize: '14px'
+                }}
+            >
+                {successMessage}
+            </span>
+            {children}
+        </>
+    );
+};
+
 export default ErrorSpan;

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import ErrorSpan from '../Errors/FormErrors';
 import { authenticate } from '../../_actions/authActions';
@@ -114,6 +114,12 @@ class Login extends Component {
                                             errorMessage={this.props.authenticationErrorMessage}
                                         />
                                     </Row>
+                                    <Row className='justify-content-center'>
+                                        <span>
+                                            Don't have an account?
+                                            <NavLink to='/signup'> Signup</NavLink>
+                                        </span>
+                                    </Row>
                                 </Form>
                             </CardBody>
                         </Card>
@@ -129,7 +135,7 @@ Login.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-    authenticationErrorMessage: state.auth.errorMessage
+    authenticationErrorMessage: state.auth.message
 });
 
 export default connect(mapStateToProps, { authenticate })(Login);

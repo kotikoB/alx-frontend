@@ -1,6 +1,7 @@
 // HoC for check authentication
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+
 export default (ComposedComponent) => {
     class RequireAuth extends Component {
         componentWillMount() {

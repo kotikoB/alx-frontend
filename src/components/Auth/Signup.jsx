@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import ErrorSpan from '../Errors/FormErrors';
+import ErrorSpan, { SuccessSpan } from '../Errors/FormErrors';
 import { register } from '../../_actions/authActions';
 
 import {
@@ -43,7 +43,6 @@ class Signup extends Component {
     onSubmitHandler = (e) => {
         e.preventDefault();
         const body = { email: this.state.email, password: this.state.password };
-        console.log('Signup body->', body);
         if (validateForm(this.state.errors)) {
             this.props.register(body);
         } else {
@@ -53,6 +52,7 @@ class Signup extends Component {
 
     render() {
         const { errors } = this.state;
+        const { successMessage, errorMessage } = this.props;
 
         const disableButton =
             errors.email.invalid === true ||
@@ -107,7 +107,17 @@ class Signup extends Component {
                                         Signup
                                     </Button>
                                     <Row className='justify-content-center'>
-                                        <ErrorSpan errorMessage={errors.formError.message} />
+                                        <ErrorSpan errorMessage={errorMessage} />
+                                    </Row>
+                                    <Row className='justify-content-center'>
+                                        <SuccessSpan successMessage={successMessage}>
+                                            {!successMessage && (
+                                                <span>
+                                                    Already have an account?
+                                                    <NavLink to='/login'> Login</NavLink>
+                                                </span>
+                                            )}
+                                        </SuccessSpan>
                                     </Row>
                                 </Form>
                             </CardBody>
@@ -124,7 +134,8 @@ Signup.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-    registering: state.registering
+    errorMessage: state.auth.errorMessage,
+    successMessage: state.auth.successMessage
 });
 
 export default connect(mapStateToProps, { register })(Signup);

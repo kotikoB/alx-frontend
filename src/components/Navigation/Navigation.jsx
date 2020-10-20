@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { connect } from 'react-redux';
 import { logout } from '../../_actions/authActions';
-import { Redirect } from 'react-router-dom';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 import avatar from '../../assets/img/male.png';
 import jwt_decode from 'jwt-decode';
 
