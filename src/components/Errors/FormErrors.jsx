@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 const ErrorSpan = ({ errorMessage }) => {
     return (
@@ -24,7 +25,11 @@ export const SuccessSpan = ({ successMessage, children }) => {
             >
                 {successMessage}
             </span>
-            {children}
+            {/* {successMessage && (
+                <span>
+                    <NavLink to='/login'> Login</NavLink>
+                </span>
+            )} */}
         </>
     );
 };

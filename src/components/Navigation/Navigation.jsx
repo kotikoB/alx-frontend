@@ -20,11 +20,6 @@ import {
     DropdownMenu
 } from 'reactstrap';
 
-const token = localStorage.getItem('token');
-const decoded = jwt_decode(token);
-
-console.log('decoded token', decoded);
-
 const Navigation = (props) => {
     const [isOpen, setIsOpen] = useState(false);
 
@@ -34,7 +29,14 @@ const Navigation = (props) => {
 
     console.log('authenticated', props);
 
-    // const dispatch = useDispatch();
+    const token = localStorage.getItem('token');
+    let decoded;
+
+    if (token) {
+        decoded = jwt_decode(token);
+    } else {
+        return <Redirect to='/login' />;
+    }
 
     return (
         <Container fluid>

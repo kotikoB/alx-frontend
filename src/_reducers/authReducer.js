@@ -8,6 +8,7 @@ import {
     LOAD_USER,
     LOGOUT
 } from '../_actions/types';
+import axios from '../helpers/axiosConfig';
 
 const initialState = {
     authenticated: false,
@@ -44,6 +45,8 @@ export const authReducer = (state = initialState, action) => {
             };
 
         case LOGOUT:
+            localStorage.removeItem('token');
+            delete axios.defaults.headers.common['Authorization'];
             return {
                 ...state,
                 authenticated: false

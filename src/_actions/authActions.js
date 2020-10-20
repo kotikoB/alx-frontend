@@ -46,6 +46,5 @@ export const register = ({ email, password }) => (dispatch) => {
 };
 
 export const logout = () => (dispatch) => {
-    delete axios.defaults.headers.common['Authorization'];
     dispatch({ type: LOGOUT });
 };
