@@ -22,7 +22,6 @@ export const authenticate = ({ email, password }) => (dispatch) => {
             });
         })
         .catch((err) => {
-            console.error('login err', err.response.data);
             dispatch({ type: AUTHENTICATION_FAILED, payload: err.response.data });
         });
 };
@@ -33,14 +32,12 @@ export const register = ({ email, password }) => (dispatch) => {
     axios
         .post('/user/register', { email, password })
         .then((res) => {
-            console.log('signup response', res.data);
             dispatch({
                 type: REGISTER_SUCCESS,
                 payload: res.data
             });
         })
         .catch((err) => {
-            console.error('register error -> ', err.response.data);
             dispatch({ type: REGISTRATION_FAILED, payload: err.response.data });
         });
 };

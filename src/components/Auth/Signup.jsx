@@ -45,8 +45,6 @@ class Signup extends Component {
         const body = { email: this.state.email, password: this.state.password };
         if (validateForm(this.state.errors)) {
             this.props.register(body);
-        } else {
-            console.error('Invalid Form');
         }
     };
 

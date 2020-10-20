@@ -43,11 +43,9 @@ class Login extends Component {
     onSubmitHandler = (e) => {
         e.preventDefault();
         const body = { email: this.state.email, password: this.state.password };
-        console.log('bosdy->', body);
         if (validateForm(this.state.errors)) {
             this.props.authenticate(body);
         } else {
-            console.error('Invalid Form');
         }
     };
 

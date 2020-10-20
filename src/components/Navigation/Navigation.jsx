@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { connect } from 'react-redux';
 import { logout } from '../../_actions/authActions';
 import { NavLink, Redirect } from 'react-router-dom';
@@ -26,8 +25,6 @@ const Navigation = (props) => {
     const toggle = () => setIsOpen(!isOpen);
 
     const { authenticated, logout } = props;
-
-    console.log('authenticated', props);
 
     const token = localStorage.getItem('token');
     let decoded;

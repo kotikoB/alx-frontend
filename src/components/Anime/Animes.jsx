@@ -7,13 +7,11 @@ import { Container, Row, Col } from 'reactstrap';
 
 class Cards extends Component {
     componentWillMount() {
-        console.log('did mount anime here', this.props.jokes);
         this.props.getAnime();
     }
 
     render() {
         const { anime } = this.props;
-        console.log('props in animes component', this.props);
         return (
             <Container className='mt-2'>
                 <h4>Anime</h4>
